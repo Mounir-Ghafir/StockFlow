@@ -1,5 +1,5 @@
-const validate = (schema) => (req, res, next) => {
-  const { error, value } = schema.validate(req.body, {
+const validate = (schema, source = 'body') => (req, res, next) => {
+  const { error, value } = schema.validate(req[source], {
     abortEarly: false,
     stripUnknown: true,
   });
@@ -13,7 +13,12 @@ const validate = (schema) => (req, res, next) => {
     });
   }
 
-  req.body = value;
+  if (source === 'query') {
+    Object.keys(req.query).forEach((key) => delete req.query[key]);
+    Object.assign(req.query, value);
+  } else {
+    req.body = value;
+  }
   return next();
 };
 

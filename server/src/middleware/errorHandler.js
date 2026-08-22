@@ -18,6 +18,10 @@ const errorHandler = (error, req, res, next) => {
     });
   }
 
+  if (error.name === 'CastError') {
+    return res.status(400).json({ error: { message: 'Invalid resource identifier' } });
+  }
+
   if (!error.statusCode || error.statusCode >= 500) {
     console.error(error);
   }
