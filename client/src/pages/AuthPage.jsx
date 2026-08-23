@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import api from '../api/axios';
@@ -12,16 +12,12 @@ const emptyForm = {
 
 const AuthPage = () => {
   const location = useLocation();
-  const [isRegister, setIsRegister] = useState(location.pathname === '/register');
+  const isRegister = location.pathname === '/register';
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token, error } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    setIsRegister(location.pathname === '/register');
-  }, [location.pathname]);
 
   if (token) {
     return <Navigate to="/" replace />;
@@ -120,7 +116,7 @@ const AuthPage = () => {
         {isRegister ? 'Already have an account?' : 'Need an account?'}{' '}
         <button
           type="button"
-          onClick={() => setIsRegister((current) => !current)}
+          onClick={() => navigate(isRegister ? '/login' : '/register')}
           style={{ border: 'none', background: 'transparent', color: '#2563eb', cursor: 'pointer', padding: 0 }}
         >
           {isRegister ? 'Login' : 'Register'}
