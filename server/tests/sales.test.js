@@ -19,6 +19,7 @@ describe('sales and purchase-order logic', () => {
   let category;
   let supplier;
   let product;
+  let dashboardProduct;
   let sale;
   let purchaseOrder;
 
@@ -65,6 +66,9 @@ describe('sales and purchase-order logic', () => {
   afterAll(async () => {
     await Sale.deleteMany({ employee: employee._id });
     await PurchaseOrder.deleteMany({ _id: purchaseOrder?._id });
+    if (dashboardProduct) {
+      await Product.deleteOne({ _id: dashboardProduct._id });
+    }
     await Product.deleteMany({ _id: product._id });
     await Category.deleteMany({ _id: category._id });
     await Supplier.deleteMany({ _id: supplier._id });
@@ -118,16 +122,35 @@ describe('sales and purchase-order logic', () => {
   });
 
   test('returns the dashboard stock and recent-sales summary for admins', async () => {
+    const baselineResponse = await request(app)
+      .get('/api/dashboard/summary')
+      .set('Authorization', `Bearer ${adminToken}`);
+    expect(baselineResponse.status).toBe(200);
+    const baseline = baselineResponse.body.data;
+
+    dashboardProduct = await Product.create({      sku: `SALES-DASH-${Date.now()}`,
+      name: 'Dashboard Summary Product',
+      category: category._id,
+      supplier: supplier._id,
+      price: 50,
+      quantityInStock: 6,
+      lowStockThreshold: 3,
+    });
+
+    const saleResponse = await request(app)
+      .post('/api/sales')
+      .set('Authorization', `Bearer ${employeeToken}`)
+      .send({ items: [{ product: dashboardProduct._id.toString(), quantity: 2 }] });
+    expect(saleResponse.status).toBe(201);
+
     const response = await request(app)
       .get('/api/dashboard/summary')
       .set('Authorization', `Bearer ${adminToken}`);
 
     expect(response.status).toBe(200);
-    expect(response.body.data).toMatchObject({
-      stockValue: 140,
-      lowStockCount: 0,
-      recentSalesTotal: 60,
-    });
+    expect(response.body.data.stockValue).toBeCloseTo(baseline.stockValue + 200, 2);
+    expect(response.body.data.lowStockCount).toBe(baseline.lowStockCount);
+    expect(response.body.data.recentSalesTotal).toBeCloseTo(baseline.recentSalesTotal + 100, 2);
   });
 
   test('receives a purchase order and increments stock once', async () => {

@@ -48,7 +48,7 @@ const AuthPage = () => {
       dispatch(loginSuccess({ token: accessToken, user }));
       navigate('/');
     } catch (requestError) {
-      const message = requestError.response?.data?.error?.message || 'Authentication failed';
+      const message = requestError.response?.data?.error?.message || 'Authentication failed.';
       dispatch(setError(message));
     } finally {
       setLoading(false);
@@ -108,7 +108,7 @@ const AuthPage = () => {
         )}
 
         <button type="submit" disabled={loading} style={{ padding: '10px 16px', borderRadius: '8px', border: 'none', background: '#111827', color: '#fff', cursor: 'pointer' }}>
-          {loading ? 'Please wait...' : isRegister ? 'Register' : 'Login'}
+          {loading ? (isRegister ? 'Creating account...' : 'Signing in...') : isRegister ? 'Register' : 'Login'}
         </button>
       </form>
 

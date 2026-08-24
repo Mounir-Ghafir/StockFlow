@@ -15,7 +15,7 @@ const getById = async (id) => {
 const create = (data) => Supplier.create(data);
 const update = async (id, data) => {
   const supplier = await Supplier.findByIdAndUpdate(id, data, {
-    new: true,
+    returnDocument: 'after',
     runValidators: true,
   });
   if (!supplier) throw notFound();

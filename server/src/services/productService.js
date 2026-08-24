@@ -45,7 +45,7 @@ const getById = async (id) => {
 const create = (data) => Product.create(data);
 const update = async (id, data) => {
   const product = await Product.findByIdAndUpdate(id, data, {
-    new: true,
+    returnDocument: 'after',
     runValidators: true,
   });
   if (!product) throw notFound();

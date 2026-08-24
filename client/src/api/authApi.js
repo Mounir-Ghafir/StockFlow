@@ -12,7 +12,7 @@ export const authApi = {
 
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(data?.error?.message || 'Registration failed');
+      throw new Error(data?.error?.message || 'Unable to create account.');
     }
 
     return data;
@@ -29,7 +29,7 @@ export const authApi = {
 
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(data?.error?.message || 'Login failed');
+      throw new Error(data?.error?.message || 'Authentication failed.');
     }
 
     return data;
@@ -45,7 +45,7 @@ export const authApi = {
 
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(data?.error?.message || 'Unable to fetch current user');
+      throw new Error(data?.error?.message || 'Unable to load current user.');
     }
 
     return data;

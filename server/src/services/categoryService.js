@@ -15,7 +15,7 @@ const getById = async (id) => {
 const create = (data) => Category.create(data);
 const update = async (id, data) => {
   const category = await Category.findByIdAndUpdate(id, data, {
-    new: true,
+    returnDocument: 'after',
     runValidators: true,
   });
   if (!category) throw notFound();
