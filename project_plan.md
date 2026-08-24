@@ -148,11 +148,11 @@ client/
 ---
 
 ## Phase 8: Full-Stack Integration
-- [ ] Connect every frontend screen to its real API endpoint (remove any mock data)
-- [ ] Verify role-based UI: Employee shouldn't see Admin-only nav links at all, not just get blocked server-side
-- [ ] Test the full JWT lifecycle: login → token stored → attached to requests → expired/invalid token → redirect to login
-- [ ] Cross-check every user story from your specs doc against the running app, one by one
-- [ ] Fix CORS configuration between the frontend and backend origins
+- [x] Connect every frontend screen to its real API endpoint (remove any mock data)
+- [x] Verify role-based UI: Employee shouldn't see Admin-only nav links at all, not just get blocked server-side
+- [x] Test the full JWT lifecycle: login → token stored → attached to requests → expired/invalid token → redirect to login
+- [x] Cross-check every user story from your specs doc against the running app, one by one
+- [x] Fix CORS configuration between the frontend and backend origins
 
 ---
 

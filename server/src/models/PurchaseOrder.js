@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const decimalToNumber = (value) => (value == null ? value : Number(value.toString()));
+
 const purchaseOrderItemSchema = new mongoose.Schema(
   {
     product: {
@@ -16,6 +18,7 @@ const purchaseOrderItemSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.Decimal128,
       required: true,
       min: 0,
+      get: decimalToNumber,
     },
   },
   { _id: false }
@@ -47,7 +50,7 @@ const purchaseOrderSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { getters: true } }
 );
 
 module.exports = mongoose.model('PurchaseOrder', purchaseOrderSchema);

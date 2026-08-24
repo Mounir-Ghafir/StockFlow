@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const decimalToNumber = (value) => (value == null ? value : Number(value.toString()));
+
 const saleItemSchema = new mongoose.Schema(
   {
     product: {
@@ -16,6 +18,7 @@ const saleItemSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.Decimal128,
       required: true,
       min: 0,
+      get: decimalToNumber,
     },
   },
   { _id: false }
@@ -40,9 +43,10 @@ const saleSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.Decimal128,
       required: true,
       min: 0,
+      get: decimalToNumber,
     },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { getters: true } }
 );
 
 module.exports = mongoose.model('Sale', saleSchema);
