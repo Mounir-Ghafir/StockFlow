@@ -157,11 +157,11 @@ client/
 ---
 
 ## Phase 9: Testing & Quality Pass
-- [ ] Run the full Jest/Supertest suite and confirm everything passes
-- [ ] Manually walk through every primary user story end-to-end in the browser
-- [ ] Test edge cases: empty product list, zero stock, invalid login, expired token, non-admin hitting an admin route
-- [ ] Run ESLint across both `client/` and `server/` and resolve warnings
-- [ ] Do a consistency pass on error messages and loading states across all screens
+- [x] Run the full Jest/Supertest suite and confirm everything passes
+- [x] Manually walk through every primary user story end-to-end in the browser
+- [x] Test edge cases: empty product list, zero stock, invalid login, expired token, non-admin hitting an admin route
+- [x] Run ESLint across both `client/` and `server/` and resolve warnings
+- [x] Do a consistency pass on error messages and loading states across all screens
 
 ---
 
