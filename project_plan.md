@@ -166,11 +166,11 @@ client/
 ---
 
 ## Phase 10: Containerization & CI/CD
-- [ ] Write a `Dockerfile` for the backend (multi-stage: install deps → copy source → run)
-- [ ] Write a root `docker-compose.yml` wiring the API and MongoDB together
-- [ ] Confirm `docker compose up` boots the whole stack from a clean clone
-- [ ] Write a GitHub Actions workflow: install deps → lint → run Jest/Supertest on every push/PR
-- [ ] Add a build-status badge to your README
+- [x] Write a `Dockerfile` for the backend (multi-stage: install deps → copy source → run)
+- [x] Write a root `docker-compose.yml` wiring the API and MongoDB together
+- [x] Confirm `docker compose up` boots the whole stack from a clean clone
+- [x] Write a GitHub Actions workflow: install deps → lint → run Jest/Supertest on every push/PR
+- [x] Add a build-status badge to your README
 
 ---
 
