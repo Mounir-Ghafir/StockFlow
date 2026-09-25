@@ -7,3 +7,6 @@ AGENTS.md
 erp-project-specifications.docx
 project_brief.md
 docs
+server/src/scripts/seedData.js
+ui_mockup.html
+presentation_content.md

@@ -184,9 +184,9 @@ client/
 ---
 
 ## Phase 12: Documentation & Defense Prep
-- [ ] Write the README: overview, tech stack, setup steps, environment variables, how to run tests, how to run via Docker
-- [ ] Document every API endpoint (or link to your API Endpoint Map)
-- [ ] Write a short deployment guide (steps to redeploy from a clean clone)
-- [ ] Prepare a 10-minute demo script covering your primary user stories
-- [ ] Be ready to justify every architectural decision out loud (why Redux Toolkit, why this folder structure, why JWT over sessions)
-- [ ] Practice the live practical scenario: rehearse adding a small feature or fixing a bug under time pressure
+- [x] Write the README: overview, tech stack, setup steps, environment variables, how to run tests, how to run via Docker
+- [x] Document every API endpoint (or link to your API Endpoint Map)
+- [x] Write a short deployment guide (steps to redeploy from a clean clone)
+- [x] Prepare a 10-minute demo script covering your primary user stories
+- [x] Be ready to justify every architectural decision out loud (why Redux Toolkit, why this folder structure, why JWT over sessions)
+- [x] Practice the live practical scenario: rehearse adding a small feature or fixing a bug under time pressure

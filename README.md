@@ -43,6 +43,18 @@ To stop and remove data volumes:
 docker compose down -v
 ```
 
+## Environment Variables
+
+To run this project locally or in production, you will need to configure the following environment variables. Create a `.env` file in the `server/` directory:
+
+```env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/stockflow
+JWT_SECRET=your_super_secret_jwt_key
+JWT_EXPIRES_IN=1d
+```
+*(A template is provided in `server/.env.example`)*
+
 ---
 
 ## Local Development Setup
@@ -52,6 +64,7 @@ docker compose down -v
 ```bash
 cd server
 cp .env.example .env
+# Edit .env with your local settings
 npm install
 npm run dev
 ```
@@ -63,6 +76,33 @@ cd client
 npm install
 npm run dev
 ```
+
+---
+
+## API Documentation
+
+The complete REST API endpoint map (including methods, routes, access levels, and purpose) is documented in our planning phase. 
+👉 **[View the API Endpoint Map](docs/phase-1-planning.md#6-rest-api-endpoint-map)**
+
+---
+
+## Deployment Guide
+
+To deploy StockFlow to a production environment from a clean clone, follow these steps:
+
+1. **Database:** Provision a MongoDB cluster (e.g., MongoDB Atlas) and get the connection string.
+2. **Backend (Render / Railway):**
+   - Connect your GitHub repository to the hosting service.
+   - Set the Root Directory to `server`.
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Set Environment Variables: `MONGO_URI`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `PORT`.
+3. **Frontend (Vercel / Netlify):**
+   - Connect your GitHub repository.
+   - Set the Root Directory to `client`.
+   - Build Command: `npm run build`
+   - Publish Directory: `dist`
+   - Set Environment Variables: `VITE_API_URL` pointing to your deployed backend URL.
 
 ---
 

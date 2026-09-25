@@ -48,7 +48,7 @@ const AuthPage = () => {
       dispatch(loginSuccess({ token: accessToken, user }));
       navigate('/');
     } catch (requestError) {
-      const message = requestError.response?.data?.error?.message || 'Authentication failed.';
+      const message = requestError.response?.data?.error?.message || requestError.message || 'Authentication failed.';
       dispatch(setError(message));
     } finally {
       setLoading(false);

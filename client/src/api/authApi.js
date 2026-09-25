@@ -29,7 +29,7 @@ export const authApi = {
 
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(data?.error?.message || 'Authentication failed.');
+      throw new Error(data?.error?.message || response.statusText || 'Authentication failed.');
     }
 
     return data;
